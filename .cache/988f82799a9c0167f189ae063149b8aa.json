@@ -1,0 +1,1 @@
+{"dependencies":[{"name":"./../utils","loc":{"line":3,"column":20}},{"name":"../defaults","loc":{"line":4,"column":23}}],"generated":{"js":"\"use strict\";var r=require(\"./../utils\"),e=require(\"../defaults\");module.exports=function(t,u,i){var s=this||e;return r.forEach(i,function(r){t=r.call(s,t,u)}),t};"},"hash":"3607fc3312fc192e3f3857dbad5f0a38"}

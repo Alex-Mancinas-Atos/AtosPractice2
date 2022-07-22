@@ -1,0 +1,1 @@
+{"dependencies":[],"generated":{"js":"\"use strict\";module.exports=function(t){return/^([a-z][a-z\\d+\\-.]*:)?\\/\\//i.test(t)};"},"hash":"2ecabff2ae17758dad68a83edb02d446"}

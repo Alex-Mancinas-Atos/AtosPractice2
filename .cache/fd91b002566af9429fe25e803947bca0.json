@@ -1,0 +1,1 @@
+{"dependencies":[{"name":"./../utils","loc":{"line":3,"column":20}}],"generated":{"js":"\"use strict\";var r=require(\"./../utils\");module.exports=function(e){return r.isObject(e)&&!0===e.isAxiosError};"},"hash":"aaa997f1d7277e8b87de110c9c956f3d"}
