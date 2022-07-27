@@ -1,5 +1,18 @@
+
 import axios from "axios";
 import * as tingle from "tingle.js";
+let currentPage: number = 0;
+const itemsPerPage = 25
+
+function paginateItems(page:number){
+  currentPage = page;
+  console.log(currentPage);
+  const init = page * itemsPerPage;
+  const limit = (page * itemsPerPage)+24;
+  extractData(paisesData, init, limit)
+  
+ 
+}
 
 let order = false;
 
@@ -11,17 +24,39 @@ axios
   .get(url)
   .then((reponse) => {
     paisesData = reponse.data as Array<any>; // * @ referenced array
-
+    const { length } = paisesData;
     sortArray(paisesData);
+    paginationItems(length);
     extractData(paisesData);
   })
   .catch((err) => console.log(err));
 
-const extractData = (paisesData: any) => {
+
+
+
+const paginationItems = (arrayLength: number) => {
+  const pages = Math.ceil(arrayLength / itemsPerPage);
+ 
+  const fatherElement = document.getElementById('pagination')!;
+
+  for (let j = 0; j <= pages - 1; j++) {
+    const newButtonId = `${j}-pagination-btn`;
+    const button = document.createElement('button');
+    button.innerHTML = `${j + 1}`;
+    button.id = newButtonId;
+    button.onclick = paginateItems.bind(this, j);
+    fatherElement.appendChild(button);
+ }
+
+
+}
+
+
+const extractData = (paisesData: any, init: number = 0, limit:number = 24) => {
   let body = "";
 
-  for (let i = 0; i < paisesData.length; i++) {
-    let item: any;
+  for (let i = init; i <= limit; i++) {
+
 
     const languages = Object.keys(paisesData[i].languages || {}).map(
       (key) => paisesData[i].languages[key]
@@ -62,11 +97,13 @@ function sortArray(paisesData: Array<any>) {
   paisesData.sort(sortAsc);
 }
 
-const sort = ($e:Event) => {
+const sort = ($e: Event) => {
   $e.preventDefault();
   paisesData.sort(order ? sortAsc : sortDesc);
-  extractData(paisesData);
+  paginateItems(currentPage)
   order = !order;
 };
 
-document.getElementById('orderArray')?.addEventListener('click',sort);
+
+
+document.getElementById('orderArray')?.addEventListener('click', sort);

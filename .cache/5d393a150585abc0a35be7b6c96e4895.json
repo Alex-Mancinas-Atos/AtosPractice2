@@ -1,0 +1,1 @@
+{"dependencies":[],"generated":{"js":"\"use strict\";\nconst log = () => {\n    console.log('banana');\n};\n"},"hash":"2afe33bf00b7082eac6a575823c08b42"}
